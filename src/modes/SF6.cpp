@@ -34,12 +34,11 @@ void SF6::UpdateDigitalOutputs(InputState &inputs, OutputState &outputs) {
     // Right hand top row
     outputs.x = inputs.r;
     outputs.y = inputs.y;
-    outputs.buttonR = inputs.lightshield;
-    outputs.buttonL = inputs.midshield;
+    outputs.buttonR = inputs.midshield;
 
     // Drive Impact and parry
     outputs.buttonL = inputs.l;
-    outputs.triggerLDigital = inputs.up;
+    outputs.triggerLDigital = inputs.up || inputs.a;
 }
 
 void SF6::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
