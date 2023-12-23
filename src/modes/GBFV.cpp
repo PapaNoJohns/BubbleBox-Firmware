@@ -24,7 +24,7 @@ void GBFV::UpdateDigitalOutputs(InputState &inputs, OutputState &outputs) {
     // Menu keys
     outputs.start = inputs.start;
     outputs.select = inputs.c_down;
-    outputs.home = inputs.c_up;
+    outputs.home = inputs.home;
 
     // Right hand bottom row
     outputs.a = inputs.b;
@@ -36,9 +36,13 @@ void GBFV::UpdateDigitalOutputs(InputState &inputs, OutputState &outputs) {
     outputs.y = inputs.y;
     outputs.buttonL = inputs.midshield; // Grab
 
-    // Skill and Dash
+    // Skill and dash
     outputs.buttonR = inputs.l || inputs.up; // Skill
     outputs.triggerLDigital = inputs.a || inputs.c_left; // Dash
+
+    // Training mode settings
+    outputs.leftStickClick = inputs.select;
+    outputs.rightStickClick = inputs.c_up;
 }
 
 void GBFV::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
