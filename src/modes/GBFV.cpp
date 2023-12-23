@@ -1,20 +1,20 @@
-#include "modes/SF6.hpp"
+#include "modes/GBFV.hpp"
 
-SF6::SF6(socd::SocdType socd_type) : ControllerMode(socd_type) {
+GBFV::GBFV(socd::SocdType socd_type) : ControllerMode(socd_type) {
     _socd_pair_count = 1;
     _socd_pairs = new socd::SocdPair[_socd_pair_count]{
         socd::SocdPair{&InputState::left, &InputState::right},
     };
 }
 
-void SF6::HandleSocd(InputState &inputs) {
+void GBFV::HandleSocd(InputState &inputs) {
     if (inputs.down && (inputs.mod_x || inputs.c_up)) {
         inputs.down = false;
     }
     InputMode::HandleSocd(inputs);
 }
 
-void SF6::UpdateDigitalOutputs(InputState &inputs, OutputState &outputs) {
+void GBFV::UpdateDigitalOutputs(InputState &inputs, OutputState &outputs) {
     // Directions
     outputs.dpadLeft = inputs.left;
     outputs.dpadRight = inputs.right;
@@ -29,19 +29,19 @@ void SF6::UpdateDigitalOutputs(InputState &inputs, OutputState &outputs) {
     // Right hand bottom row
     outputs.a = inputs.b;
     outputs.b = inputs.x;
-    outputs.triggerRDigital = inputs.z;
+    outputs.triggerRDigital = inputs.z; // Block
 
     // Right hand top row
     outputs.x = inputs.r;
     outputs.y = inputs.y;
-    outputs.buttonR = inputs.midshield;
+    outputs.buttonL = inputs.midshield; // Grab
 
-    // Drive Impact and parry
-    outputs.buttonL = inputs.l; // DI
-    outputs.triggerLDigital = inputs.up || inputs.a || inputs.c_left; // Parry
+    // Skill and Dash
+    outputs.buttonR = inputs.l; // Skill
+    outputs.triggerLDigital = inputs.up || inputs.a || inputs.c_left; // Dash
 }
 
-void SF6::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
+void GBFV::UpdateAnalogOutputs(InputState &inputs, OutputState &outputs) {
     outputs.leftStickX = 128;
     outputs.leftStickY = 128;
     outputs.rightStickX = 128;
