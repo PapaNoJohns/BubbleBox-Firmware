@@ -37,8 +37,8 @@ void GBFV::UpdateDigitalOutputs(InputState &inputs, OutputState &outputs) {
     outputs.buttonL = inputs.midshield; // Grab
 
     // Skill and dash
-    outputs.buttonR = inputs.l || inputs.up; // Skill
-    outputs.triggerLDigital = inputs.a || inputs.c_left; // Dash
+    outputs.buttonR = inputs.l || inputs.a || inputs.c_left; // Skill
+    outputs.triggerLDigital = inputs.up; // Dash
 
     // Training mode settings
     outputs.leftStickClick = inputs.select;
