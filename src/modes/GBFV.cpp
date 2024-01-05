@@ -30,15 +30,16 @@ void GBFV::UpdateDigitalOutputs(InputState &inputs, OutputState &outputs) {
     outputs.a = inputs.b;
     outputs.b = inputs.x;
     outputs.triggerRDigital = inputs.z; // Block
+    outputs.triggerLDigital = inputs.up; // Dash
 
     // Right hand top row
     outputs.x = inputs.r;
     outputs.y = inputs.y;
-    outputs.buttonL = inputs.midshield; // Grab
+    outputs.buttonR = inputs.midshield || inputs.l || inputs.a || inputs.c_left; // Skill
+    outputs.buttonL = inputs.lightshield; // Grab
 
-    // Skill and dash
-    outputs.buttonR = inputs.l || inputs.a || inputs.c_left; // Skill
-    outputs.triggerLDigital = inputs.up; // Dash
+    
+    
 
     // Training mode settings
     outputs.leftStickClick = inputs.select;
